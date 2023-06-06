@@ -1,77 +1,100 @@
 import React from 'react';
-import { Button, Form } from "react-bootstrap";
-import { useFormik } from "formik";
+import { Button } from "react-bootstrap";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import ValidationSchema from './ValidationSchema';
+import TextError from './TextError';
 
+const initialValues = {
+  name: "",
+  email: "",
+  channel: "",
+  comments: "",
+  address: "",
+}
+
+const onSubmit = (values) => {
+  console.log("Form data", values)
+}
 
 
 function YoutubeForm() {
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      channel: ""
-    },
-    onSubmit: (values) => {
-      console.log("Form data", values);
-    },
-    validationSchema: ValidationSchema
-  });
-
   return (
-    <div className='container'>
-      <h1>Youtube Form</h1>
-      <Form onSubmit={formik.handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter the name"
-            name='name'
-            id='name'
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-        </Form.Group>
-        {formik.touched.name && formik.errors.name ? (
-          <div className="error mb-2">{formik.errors.name}</div>
-        ) : null}
-        <Form.Group className="mb-3">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="name@example.com"
-            name='email'
-            id='email'
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
+    <Formik
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      validationSchema={ValidationSchema}
+    >
+      <div className='container'>
+        <h1>Youtube Form</h1>
+        <Form >
+          <div className='form-group mb-3'>
+            <label htmlFor="name">Name</label>
+            <Field type="text"
+              className='form-control'
+              name='name'
+              id='name'
+              placeholder='Enter Your Name'
+            />
+            <ErrorMessage name='name' component={TextError} />
+          </div>
 
-        </Form.Group>
-        {formik.touched.email && formik.errors.email ? (
-          <div className="error mb-2">{formik.errors.email}</div>
-        ) : null}
+          <div className='form-group mb-3'>
+            <label htmlFor="email">Email</label>
+            <Field type="email"
+              className='form-control'
+              name='email'
+              id='email'
+              placeholder='Enter Your Email'
+            />
+            <ErrorMessage name='email' component={TextError} />
+          </div>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Channel Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter your youtube channel name"
-            name='channel'
-            id='channel'
-            value={formik.values.channel}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-        </Form.Group>
-        {formik.touched.channel && formik.errors.channel ? (
-          <div className="error mb-2">{formik.errors.channel}</div>
-        ) : null}
-        <Button className='mt-3' type='submit' variant='primary'>Submit</Button>
-      </Form>
-    </div>
+
+          <div className='form-group mb-3'>
+            <label htmlFor="channel">Channel</label>
+            <Field
+              type="text"
+              className='form-control'
+              name='channel'
+              id='channel'
+              placeholder='Enter Your Channel Name'
+            />
+            <ErrorMessage name='channel' component={TextError} />
+          </div>
+
+          <div className='form-group mb-3'>
+            <label htmlFor="comments">Comments</label>
+            <Field
+              as="textarea"
+              className='form-control'
+              name='comments'
+              id='comments'
+              placeholder='Enter Comments'
+            />
+          </div>
+          <div className='form-group mb-3'>
+            <label htmlFor="address">Address</label>
+            <Field name="address">
+              {
+                (props) => {
+                  const { field, meta, form } = props
+                  console.log("props", props)
+                  return (
+                    <div>
+                      <input className='form-control' id='address' {...field} />
+                      {meta.touched && meta.error ?
+                        <div className='error'>{meta.error}</div> : null}
+                    </div>
+                  )
+                }
+              }
+            </Field>
+          </div>
+
+          <Button className='mt-3' type='submit' variant='primary'>Submit</Button>
+        </Form>
+      </div>
+    </Formik>
   );
 }
 
