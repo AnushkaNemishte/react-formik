@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Form } from "react-bootstrap";
 import { useFormik } from "formik";
-import * as Yup from 'yup';
 import ValidationSchema from './ValidationSchema';
 
 
