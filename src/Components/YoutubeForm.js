@@ -10,6 +10,10 @@ const initialValues = {
   channel: "",
   comments: "",
   address: "",
+  social:{
+    facebook:"",
+    twitter:""
+  }
 }
 
 const onSubmit = (values) => {
@@ -81,7 +85,7 @@ function YoutubeForm() {
                   console.log("props", props)
                   return (
                     <div>
-                      <input className='form-control' id='address' {...field} />
+                      <input className='form-control' id='address' {...field} placeholder='Enter your Address' />
                       {meta.touched && meta.error ?
                         <div className='error'>{meta.error}</div> : null}
                     </div>
@@ -90,6 +94,29 @@ function YoutubeForm() {
               }
             </Field>
           </div>
+          <div className='form-group mb-3'>
+            <label htmlFor="facebook">Facebook Profile</label>
+            <Field
+              type="text"
+              className='form-control'
+              name='social.facebook'
+              id='facebook'
+              placeholder='Enter URL'
+            />
+            <ErrorMessage name='social.facebook' component={TextError}/>
+          </div>
+          <div className='form-group mb-3'>
+            <label htmlFor="twitter">Twitter Profile</label>
+            <Field
+              type="text"
+              className='form-control'
+              name='social.twitter'
+              id='twitter'
+              placeholder='Enter URL'
+            />
+            <ErrorMessage name='social.twitter' component={TextError}/>
+          </div>
+
 
           <Button className='mt-3' type='submit' variant='primary'>Submit</Button>
         </Form>
