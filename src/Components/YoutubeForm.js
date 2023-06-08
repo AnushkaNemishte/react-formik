@@ -13,8 +13,8 @@ const initialValues = {
   social:{
     facebook:"",
     twitter:""
-  },
-  phoneNumber:[" "," "],
+  }
+ 
 }
 
 const onSubmit = (values) => {
@@ -117,26 +117,8 @@ function YoutubeForm() {
             />
             <ErrorMessage name='social.twitter' component={TextError}/>
           </div>
-          <div className='form-group mb-3'>
-            <label htmlFor="phonenumber">Phone Number</label>
-            <Field
-              type="text"
-              className='form-control'
-              name='phoneNumber[0]'
-              id='phonenumber'
-              placeholder='Enter Phone Number'
-            />
-          </div>
-          <div className='form-group mb-3'>
-            <label htmlFor="emergencyphonenumber">Emergency Phone Number</label>
-            <Field
-              type="text"
-              className='form-control'
-              name='phoneNumber[1]'
-              id='emergencyphonenumber'
-              placeholder='Enter Emergency Phone Number'
-            />
-          </div>
+         
+          
 
 
           <Button className='mt-3' type='submit' variant='primary'>Submit</Button>
