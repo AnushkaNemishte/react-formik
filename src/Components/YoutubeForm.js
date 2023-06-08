@@ -96,7 +96,7 @@ function YoutubeForm() {
             </Field>
           </div>
           <div className='form-group mb-3'>
-            <label htmlFor="facebook">Facebook Profile</label>
+            <label htmlFor="facebook">FB Profile</label>
             <Field
               type="text"
               className='form-control'
