@@ -10,11 +10,10 @@ const initialValues = {
   channel: "",
   comments: "",
   address: "",
-  social:{
-    facebook:"",
-    twitter:""
+  social: {
+    facebook: "",
+    twitter: ""
   }
- 
 }
 
 const onSubmit = (values) => {
@@ -104,7 +103,7 @@ function YoutubeForm() {
               id='facebook'
               placeholder='Enter URL'
             />
-            <ErrorMessage name='social.facebook' component={TextError}/>
+            <ErrorMessage name='social.facebook' component={TextError} />
           </div>
           <div className='form-group mb-3'>
             <label htmlFor="twitter">Twitter Profile</label>
@@ -115,12 +114,8 @@ function YoutubeForm() {
               id='twitter'
               placeholder='Enter URL'
             />
-            <ErrorMessage name='social.twitter' component={TextError}/>
+            <ErrorMessage name='social.twitter' component={TextError} />
           </div>
-         
-          
-
-
           <Button className='mt-3' type='submit' variant='primary'>Submit</Button>
         </Form>
       </div>
