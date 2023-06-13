@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from "react-bootstrap";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
 import ValidationSchema from './ValidationSchema';
 import TextError from './TextError';
 
@@ -15,6 +15,7 @@ const initialValues = {
     twitter: ""
   },
   phoneNumbers: ["", ""],
+  phNumbers: [''],
 }
 
 const onSubmit = (values) => {
@@ -138,6 +139,34 @@ function YoutubeForm() {
               placeholder="Enter Emergency Phone number"
             />
             <ErrorMessage name='phoneNumbers[1]' component={TextError} />
+          </div>
+          <div className="form-group mb-3">
+            <label htmlFor="phNumbers">List of Phone Numbers </label>
+            <FieldArray name='phNumbers'>
+              {
+                (FieldArrayProps) => {
+                  console.log("fieldprops", FieldArrayProps);
+                  const { push, remove, form } = FieldArrayProps
+                  const { values } = form
+                  const { phNumbers } = values
+                  return <div>
+                    {
+                      phNumbers.map((phNumber, index) => (
+                        <div key={index}>
+                          <Field name={`phNumbers[${index}]`} />
+                          {
+                            index > 0 && <Button variant='danger' onClick={() => remove(index)}>-</Button>
+                          }
+                          <Button variant='success' onClick={() => push('')}>+</Button>
+
+                        </div>
+                      )
+                      )
+                    }
+                  </div>
+                }
+              }
+            </FieldArray>
           </div>
           <Button className='mt-3' type='submit' variant='primary'>Submit</Button>
         </Form>
