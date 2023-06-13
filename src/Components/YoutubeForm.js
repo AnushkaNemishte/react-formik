@@ -18,8 +18,9 @@ const initialValues = {
   phNumbers: [''],
 }
 
-const onSubmit = (values) => {
+const onSubmit = (values,onSubmitProps) => {
   console.log("Form data", values)
+  onSubmitProps.resetForm()
 }
 
 
@@ -30,6 +31,7 @@ function YoutubeForm() {
       onSubmit={onSubmit}
       validationSchema={ValidationSchema}
       validateOnMount
+     
     >
       {
         (formikProps) => {
