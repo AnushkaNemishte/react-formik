@@ -1,4 +1,5 @@
 import Input from "./Input";
+import Select from "./Select";
 import TextArea from "./TextArea";
 
 function FormikControls(props) {
@@ -9,6 +10,7 @@ function FormikControls(props) {
     case "textarea":
         return <TextArea {...rest}/>
     case "select":
+        return <Select {...rest}/>
     case "radio":
     case "checkbox":
     case "date":
