@@ -32,6 +32,7 @@ function FormikContainer() {
     };
   const onSubmit = (values) => {
     console.log("Form data ", values);
+    
   };
   const validationSchema = Yup.object({
     name: Yup.string().required("Required"),
@@ -47,6 +48,7 @@ function FormikContainer() {
       initialValues={initialValue}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
+      validateOnMount
     >
       {(formikprops) => {
         return (
@@ -96,7 +98,7 @@ function FormikContainer() {
                 label="Date Of Birth"
                 name="birthDate"
               />
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" >
                 Submit
               </Button>
             </Form>
