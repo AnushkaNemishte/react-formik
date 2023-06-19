@@ -1,14 +1,14 @@
 import React from 'react';
 
 import "./App.css"
-import LoginForm from './Forms/LoginForm';
+//import LoginForm from './Forms/LoginForm';
+import Registration from './Forms/Registration';
 
 function App() {
   return (
    <>
-   
-  <LoginForm/>
-
+  {/* <LoginForm/> */}
+  <Registration/>
    </>
   );
 }
